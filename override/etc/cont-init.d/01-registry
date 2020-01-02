@@ -1,0 +1,13 @@
+#!/usr/bin/with-contenv bash
+
+if [[ ! -e /mnt/config/etc/registry/config.yml ]]; then
+  if [[ ! -d /mnt/config/etc/registry ]]; then
+    s6-setuidgid guardian mkdir -p /mnt/config/etc/registry
+  fi
+
+  s6-setuidgid guardian cp -n /etc/registry/* /mnt/config/etc/registry/
+fi
+
+if [[ ! -d /mnt/config/data/registry ]]; then
+  s6-setuidgid guardian mkdir -p /mnt/config/data/registry
+fi

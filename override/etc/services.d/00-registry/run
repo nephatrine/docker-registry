@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv sh
+
+/etc/cont-init.d/01-registry
+exec s6-setuidgid guardian /usr/bin/registry serve /mnt/config/etc/registry/config.yml
