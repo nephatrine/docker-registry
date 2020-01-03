@@ -10,10 +10,8 @@ platform:
 steps:
 - name: build
   commands:
-  - echo $HOME/.docker/config.json
-  - bash /mnt/config/bin/auth.sh
   - docker build -t pdr.nephatrine.net/nephatrine/docker-registry:latest .
-  - docker push pdr.nephatrine.net/nephatrine/docker-registry:latest
+  - HOME=/mnt/config/home docker push pdr.nephatrine.net/nephatrine/docker-registry:latest
 
 ---
 kind: pipeline
