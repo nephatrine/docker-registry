@@ -1,0 +1,32 @@
+---
+kind: pipeline
+type: exec
+name: default
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: build
+  commands:
+  - s6-setuidgid guardian docker build -t pdr.nephatrine.net/nephatrine/docker-registry:latest .
+  - s6-setuidgid guardian docker push pdr.nephatrine.net/nephatrine/docker-registry:latest
+
+---
+kind: pipeline
+name: after
+
+- name: notify
+  image: appleboy/drone-discord
+  settings:
+    avatar_url: https://files.nephatrine.net/Images/Buttons/Drone.png
+    message: "Automated build of **{{repo.name}}** has returned [{{build.status}}]({{build.link}})."
+    username: DroneCI
+    webhook_id:
+      from_secret: webhook-id
+    webhook_token:
+      from_secret: webhook-token
+
+depends_on:
+- default
