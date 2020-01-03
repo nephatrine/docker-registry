@@ -2,6 +2,8 @@
 [Docker](https://hub.docker.com/r/nephatrine/docker-registry/) |
 [unRAID](https://code.nephatrine.net/nephatrine/unraid-containers)
 
+[![Build Status](https://ci.nephatrine.net/api/badges/nephatrine/docker-registry/status.svg)](https://ci.nephatrine.net/nephatrine/docker-registry)
+
 # Docker Registry
 
 This docker image contains a Docker Registry server to self-host your own
