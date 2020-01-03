@@ -10,8 +10,10 @@ platform:
 steps:
 - name: build
   commands:
-  - docker build -t pdr.nephatrine.net/nephatrine/docker-registry:latest .
-  - HOME=/mnt/config/home docker push pdr.nephatrine.net/nephatrine/docker-registry:latest
+  - docker build --pull -t pdr.nephatrine.net/nephatrine/docker-registry:latest .
+  - docker push pdr.nephatrine.net/nephatrine/docker-registry:latest
+  - docker tag pdr.nephatrine.net/nephatrine/docker-registry:latest nephatrine/docker-registry:latest
+  - docker push nephatrine/docker-registry:latest
 
 ---
 kind: pipeline
