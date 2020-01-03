@@ -7,6 +7,11 @@
 This docker image contains a Docker Registry server to self-host your own
 docker registry.
 
+**ONLY THE REGISTRY SERVER IS INCLUDED. YOU WILL NEED TO USE A SEPARATE REVERSE
+PROXY SERVER TO FULLY UTILIZE AND SECURE THIS SERVICE. SEE THE
+[DOCUMENTATION](https://docs.docker.com/registry/recipes/nginx/) FOR MORE
+DETAILS ON HOW TO CONFIGURE SUCH A PROXY.**
+
 - [Docker Registry](https://docs.docker.com/registry/)
 
 You can spin up a quick temporary test container like this:
@@ -18,8 +23,9 @@ docker run --rm -p 5000:5000 -it nephatrine/docker-registry:latest /bin/bash
 ## Configuration Variables
 
 You can set these parameters using the syntax ``-e "VARNAME=VALUE"`` on your
-``docker run`` command. These are typically used during the container
-initialization scripts to perform initial setup.
+``docker run`` command. Some of these may only be used during initial
+configuration and further changes may need to be made in the generated
+configuration files.
 
 - ``PUID``: Mount Owner UID (*1000*)
 - ``PGID``: Mount Owner GID (*100*)
@@ -32,7 +38,7 @@ syntax. These mountpoints are intended to house important configuration files,
 logs, and application state (e.g. databases) so they are not lost on image
 update.
 
-- ``/mnt/config``: Persistent Data. Do not share with multiple containers.
+- ``/mnt/config``: Persistent Data.
 
 Do not share ``/mnt/config`` volumes between multiple containers as they may
 interfere with the operation of one another.
