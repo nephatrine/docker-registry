@@ -10,9 +10,8 @@ platform:
 steps:
 - name: build
   commands:
-  - hostname && pwd && id
-  - s6-setuidgid guardian docker build -t pdr.nephatrine.net/nephatrine/docker-registry:latest .
-  - s6-setuidgid guardian docker push pdr.nephatrine.net/nephatrine/docker-registry:latest
+  - docker build -t pdr.nephatrine.net/nephatrine/docker-registry:latest .
+  - docker push pdr.nephatrine.net/nephatrine/docker-registry:latest
 
 ---
 kind: pipeline
