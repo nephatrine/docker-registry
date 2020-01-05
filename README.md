@@ -9,10 +9,9 @@
 This docker image contains a Docker Registry server to self-host your own
 docker registry.
 
-**ONLY THE REGISTRY SERVER IS INCLUDED. YOU WILL NEED TO USE A SEPARATE REVERSE
-PROXY SERVER TO FULLY UTILIZE AND SECURE THIS SERVICE. SEE THE
-[DOCUMENTATION](https://docs.docker.com/registry/recipes/nginx/) FOR MORE
-DETAILS ON HOW TO CONFIGURE SUCH A PROXY.**
+**YOU WILL NEED TO USE A SEPARATE REVERSE PROXY SERVER TO SECURE THIS SERVICE.
+SEE THE [DOCUMENTATION](https://docs.docker.com/registry/recipes/nginx/) FOR
+MORE DETAILS ON HOW TO CONFIGURE SUCH A PROXY.**
 
 - [Docker Registry](https://docs.docker.com/registry/)
 
