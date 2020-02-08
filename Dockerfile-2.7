@@ -15,12 +15,12 @@ RUN echo "====== COMPILE REGISTRY ======" \
  && go install github.com/docker/distribution/cmd/registry \
  && cp github.com/docker/distribution/cmd/registry/config-example.yml /etc/registry/config-example.yml \
  && cp /etc/registry/config-example.yml /etc/registry/config.yml \
- && sed -i 's~/var/lib/registry~/mnt/config/data/registry~g' /etc/registry/config.yml \
+ && sed -i 's~/var/lib/registry~/mnt/config/data~g' /etc/registry/config.yml \
  && sed -i 's~/etc/registry~/mnt/config/etc/registry~g' /etc/registry/config.yml \
  && cd /usr/src && rm -rf /usr/pkg/* /usr/src/* \
  && apk del --purge .build-registry && rm -rf /var/cache/apk/*
 
-ENV REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/mnt/config/data/registry
+ENV REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/mnt/config/data
+COPY override /
 
 EXPOSE 5000/tcp
-COPY override /
