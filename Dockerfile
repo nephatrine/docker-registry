@@ -1,7 +1,6 @@
-FROM nephatrine/alpine-s6:3.11
+FROM nephatrine/alpine-s6:testing
 LABEL maintainer="Daniel Wolf <nephatrine@gmail.com>"
 
-ARG REGISTRY_VERSION=release/2.7
 ARG GOPATH="/usr"
 
 RUN echo "====== COMPILE REGISTRY ======" \
@@ -9,9 +8,6 @@ RUN echo "====== COMPILE REGISTRY ======" \
  && apk add --virtual .build-registry build-base git go \
  && cd /usr/src \
  && go get -d github.com/docker/distribution/cmd/registry \
- && cd github.com/docker/distribution/cmd/registry \
- && git fetch && git fetch --tags \
- && git checkout "$REGISTRY_VERSION" && cd /usr/src \
  && go install github.com/docker/distribution/cmd/registry \
  && cp github.com/docker/distribution/cmd/registry/config-example.yml /etc/registry/config-example.yml \
  && cp /etc/registry/config-example.yml /etc/registry/config.yml \

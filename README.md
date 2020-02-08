@@ -2,7 +2,7 @@
 [Docker](https://hub.docker.com/r/nephatrine/docker-registry/) |
 [unRAID](https://code.nephatrine.net/nephatrine/unraid-containers)
 
-[![Build Status](https://ci.nephatrine.net/api/badges/nephatrine/docker-registry/status.svg?ref=refs/heads/master)](https://ci.nephatrine.net/nephatrine/docker-registry)
+[![Build Status](https://ci.nephatrine.net/api/badges/nephatrine/docker-registry/status.svg?ref=refs/heads/testing)](https://ci.nephatrine.net/nephatrine/docker-registry)
 
 # Docker Registry
 
