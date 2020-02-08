@@ -8,7 +8,14 @@ platform:
   arch: amd64
 
 steps:
-- name: build
+- name: build-2.7
+  commands:
+  - docker build --pull -t pdr.nephatrine.net/nephatrine/docker-registry:2.7 -f Dockerfile-2.7 .
+  - HOME=/mnt/config/home docker push pdr.nephatrine.net/nephatrine/docker-registry:2.7
+  - docker tag pdr.nephatrine.net/nephatrine/docker-registry:2.7 nephatrine/docker-registry:2.7
+  - HOME=/mnt/config/home docker push nephatrine/docker-registry:2.7
+  - docker rmi pdr.nephatrine.net/nephatrine/docker-registry:2.7
+- name: build-latest
   commands:
   - docker build --pull -t pdr.nephatrine.net/nephatrine/docker-registry:latest .
   - HOME=/mnt/config/home docker push pdr.nephatrine.net/nephatrine/docker-registry:latest

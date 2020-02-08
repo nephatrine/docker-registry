@@ -2,7 +2,7 @@
 [Docker](https://hub.docker.com/r/nephatrine/docker-registry/) |
 [unRAID](https://code.nephatrine.net/nephatrine/unraid-containers)
 
-[![Build Status](https://ci.nephatrine.net/api/badges/nephatrine/docker-registry/status.svg)](https://ci.nephatrine.net/nephatrine/docker-registry)
+[![Build Status](https://ci.nephatrine.net/api/badges/nephatrine/docker-registry/status.svg?ref=refs/heads/master)](https://ci.nephatrine.net/nephatrine/docker-registry)
 
 # Docker Registry
 
@@ -20,6 +20,12 @@ You can spin up a quick temporary test container like this:
 ~~~
 docker run --rm -p 5000:5000 -it nephatrine/docker-registry:latest /bin/bash
 ~~~
+
+## Docker Tags
+
+- **nephatrine/drone-server:testing**: Registry Master (Alpine Edge)
+- **nephatrine/drone-server:latest**: Registry v2.7 (Alpine v3.11)
+- **nephatrine/drone-server:2.7**: Registry v2.7 (Alpine v3.10)
 
 ## Configuration Variables
 
