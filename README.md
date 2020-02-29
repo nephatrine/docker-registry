@@ -23,9 +23,9 @@ docker run --rm -p 5000:5000 -it nephatrine/docker-registry:latest /bin/bash
 
 ## Docker Tags
 
-- **nephatrine/drone-server:testing**: Registry Master (Alpine Edge)
-- **nephatrine/drone-server:latest**: Registry v2.7 (Alpine v3.11)
-- **nephatrine/drone-server:2.7**: Registry v2.7 (Alpine v3.10)
+- **nephatrine/docker-registry:testing**: Registry Master (Alpine Edge)
+- **nephatrine/docker-registry:latest**: Registry v2.7 (Alpine v3.11)
+- **nephatrine/docker-registry:2.7**: Registry v2.7 (Alpine v3.10)
 
 ## Configuration Variables
 
