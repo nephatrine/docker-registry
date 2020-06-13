@@ -1,4 +1,4 @@
-FROM nephatrine/alpine-s6:3.11
+FROM nephatrine/alpine-s6:3.12
 LABEL maintainer="Daniel Wolf <nephatrine@gmail.com>"
 
 ARG REGISTRY_VERSION=release/2.7
