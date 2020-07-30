@@ -8,6 +8,6 @@ if [[ ! -e /mnt/config/etc/registry/config.yml ]]; then
   s6-setuidgid guardian cp -n /etc/registry/* /mnt/config/etc/registry/
 fi
 
-if [[ ! -d /mnt/config/data/registry ]]; then
-  s6-setuidgid guardian mkdir -p /mnt/config/data/registry
+if [[ ! -d ${REGISTRY_DATA_DIR} ]]; then
+  s6-setuidgid guardian mkdir -p ${REGISTRY_DATA_DIR}
 fi

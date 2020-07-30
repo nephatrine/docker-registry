@@ -6,6 +6,7 @@ ARG GOPATH="/usr"
 
 RUN echo "====== COMPILE REGISTRY ======" \
  && mkdir /etc/registry \
+ && apk add python3 \
  && apk add --virtual .build-registry build-base git go \
  && cd /usr/src \
  && go get -d github.com/docker/distribution/cmd/registry \
@@ -21,6 +22,7 @@ RUN echo "====== COMPILE REGISTRY ======" \
  && apk del --purge .build-registry && rm -rf /var/cache/apk/*
 
 ENV REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/mnt/config/data
+ENV REGISTRY_DATA_DIR=${REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY}/docker/registry/v2
 COPY override /
 
 EXPOSE 5000/tcp
