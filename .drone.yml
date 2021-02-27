@@ -10,18 +10,20 @@ platform:
 steps:
 - name: build-2.7
   commands:
-  - docker build --pull -t pdr.nephatrine.net/nephatrine/docker-registry:2.7 -f Dockerfile-2.7 .
+  - docker build --pull -t pdr.nephatrine.net/nephatrine/docker-registry:2.7 .
   - HOME=/mnt/config/home docker push pdr.nephatrine.net/nephatrine/docker-registry:2.7
   - docker tag pdr.nephatrine.net/nephatrine/docker-registry:2.7 nephatrine/docker-registry:2.7
   - HOME=/mnt/config/home docker push nephatrine/docker-registry:2.7
   - docker rmi pdr.nephatrine.net/nephatrine/docker-registry:2.7
 - name: build-latest
   commands:
-  - docker build --pull -t pdr.nephatrine.net/nephatrine/docker-registry:latest .
+  - docker tag nephatrine/docker-registry:2.7 pdr.nephatrine.net/nephatrine/docker-registry:latest
   - HOME=/mnt/config/home docker push pdr.nephatrine.net/nephatrine/docker-registry:latest
   - docker tag pdr.nephatrine.net/nephatrine/docker-registry:latest nephatrine/docker-registry:latest
   - HOME=/mnt/config/home docker push nephatrine/docker-registry:latest
   - docker rmi pdr.nephatrine.net/nephatrine/docker-registry:latest
+  depends_on:
+  - build-2.7
 
 ---
 kind: pipeline
@@ -49,6 +51,6 @@ trigger:
 
 ---
 kind: signature
-hmac: 78543eb4b3603a3e8c0426c86ac6460446aac1d9a090c82f584e3ac3c7588850
+hmac: c122eaf8c132be3935cae0d71d03187a4e68c8745b7e6c4c2bdd74b2091b1dbc
 
 ...
