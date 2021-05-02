@@ -1,3 +1,2 @@
 #!/usr/bin/with-contenv sh
-
 /usr/bin/registry garbage-collect /mnt/config/etc/registry/config.yml $@
