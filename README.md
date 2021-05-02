@@ -23,8 +23,9 @@ docker run --rm -p 5000:5000 -it nephatrine/docker-registry:latest /bin/bash
 
 ## Docker Tags
 
-- **nephatrine/docker-registry:testing**: Registry Master (Alpine Edge)
-- **nephatrine/docker-registry:latest**: Registry v2.7.x (Alpine v3.13)
+- **nephatrine/docker-registry:testing**: Registry Master
+- **nephatrine/docker-registry:latest**: Registry 2.7
+- **nephatrine/docker-registry:2.7**: Registry 2.7
 
 ## Configuration Variables
 
