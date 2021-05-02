@@ -10,7 +10,7 @@ platform:
 steps:
 - name: build
   commands:
-  - docker build --pull -t pdr.nephatrine.net/nephatrine/docker-registry:testing .
+  - docker build -t pdr.nephatrine.net/nephatrine/docker-registry:testing .
   - HOME=/mnt/config/home docker push pdr.nephatrine.net/nephatrine/docker-registry:testing
   - docker tag pdr.nephatrine.net/nephatrine/docker-registry:testing nephatrine/docker-registry:testing
   - HOME=/mnt/config/home docker push nephatrine/docker-registry:testing
