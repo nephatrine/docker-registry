@@ -10,11 +10,8 @@ platform:
 steps:
 - name: build-2.7
   commands:
-  - docker build --pull -t pdr.nephatrine.net/nephatrine/docker-registry:2.7 .
-  - HOME=/mnt/config/home docker push pdr.nephatrine.net/nephatrine/docker-registry:2.7
-  - docker tag pdr.nephatrine.net/nephatrine/docker-registry:2.7 nephatrine/docker-registry:2.7
+  - docker build -t nephatrine/docker-registry:2.7 .
   - HOME=/mnt/config/home docker push nephatrine/docker-registry:2.7
-  - docker rmi pdr.nephatrine.net/nephatrine/docker-registry:2.7
 - name: build-latest
   commands:
   - docker tag nephatrine/docker-registry:2.7 pdr.nephatrine.net/nephatrine/docker-registry:latest
@@ -51,6 +48,6 @@ trigger:
 
 ---
 kind: signature
-hmac: c122eaf8c132be3935cae0d71d03187a4e68c8745b7e6c4c2bdd74b2091b1dbc
+hmac: b6dbf8ecf2e6959e7c5b42f0ad00850a0469ceb2ca856d9d44e81e8e1bd0f18b
 
 ...
