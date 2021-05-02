@@ -8,12 +8,9 @@ RUN echo "====== COMPILE REGISTRY ======" \
  && mkdir /etc/registry \
  && apk add python3 \
  && apk add --virtual .build-registry build-base git go \
- && cd /usr/src \
- && go get -d github.com/docker/distribution/cmd/registry \
- && cd github.com/docker/distribution/cmd/registry \
- && git fetch && git fetch --tags \
- && git checkout "$REGISTRY_VERSION" && cd /usr/src \
- && go install github.com/docker/distribution/cmd/registry \
+ && mkdir -p /usr/src/github.com/docker \
+ && git -C /usr/src/github.com/docker clone -b "$REGISTRY_VERSION" --single-branch --depth=1 https://github.com/docker/distribution.git \
+ && cd /usr/src && go install github.com/docker/distribution/cmd/registry \
  && cp github.com/docker/distribution/cmd/registry/config-example.yml /etc/registry/config-example.yml \
  && cp /etc/registry/config-example.yml /etc/registry/config.yml \
  && sed -i 's~/var/lib/registry~/mnt/config/data~g' /etc/registry/config.yml \
