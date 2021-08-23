@@ -1,4 +1,4 @@
-[Git](https://code.nephatrine.net/nephatrine/docker-registry) |
+[Git](https://code.nephatrine.net/nephatrine/docker-registry/src/branch/master) |
 [Docker](https://hub.docker.com/r/nephatrine/docker-registry/) |
 [unRAID](https://code.nephatrine.net/nephatrine/unraid-containers)
 
@@ -13,6 +13,9 @@ docker registry.
 SEE THE [DOCUMENTATION](https://docs.docker.com/registry/recipes/nginx/) FOR
 MORE DETAILS ON HOW TO CONFIGURE SUCH A PROXY.**
 
+- [Alpine Linux](https://alpinelinux.org/)
+- [Skarnet Software](https://skarnet.org/software/)
+- [S6 Overlay](https://github.com/just-containers/s6-overlay)
 - [Docker Registry](https://docs.docker.com/registry/)
 
 You can spin up a quick temporary test container like this:
@@ -23,9 +26,8 @@ docker run --rm -p 5000:5000 -it nephatrine/docker-registry:latest /bin/bash
 
 ## Docker Tags
 
-- **nephatrine/docker-registry:testing**: Registry Master
-- **nephatrine/docker-registry:latest**: Registry 2.7
-- **nephatrine/docker-registry:2.7**: Registry 2.7
+- **nephatrine/docker-registry:testing**: Registry 2.7 / Alpine Edge
+- **nephatrine/docker-registry:latest**: Registry 2.7 / Alpine Latest
 
 ## Configuration Variables
 

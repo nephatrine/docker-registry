@@ -8,19 +8,13 @@ platform:
   arch: amd64
 
 steps:
-- name: build-2.7
+- name: build
   commands:
-  - docker build -t nephatrine/docker-registry:2.7 .
-  - HOME=/mnt/config/home docker push nephatrine/docker-registry:2.7
-- name: build-latest
-  commands:
-  - docker tag nephatrine/docker-registry:2.7 pdr.nephatrine.net/nephatrine/docker-registry:latest
+  - docker build -t pdr.nephatrine.net/nephatrine/docker-registry:latest .
   - HOME=/mnt/config/home docker push pdr.nephatrine.net/nephatrine/docker-registry:latest
   - docker tag pdr.nephatrine.net/nephatrine/docker-registry:latest nephatrine/docker-registry:latest
   - HOME=/mnt/config/home docker push nephatrine/docker-registry:latest
   - docker rmi pdr.nephatrine.net/nephatrine/docker-registry:latest
-  depends_on:
-  - build-2.7
 
 ---
 kind: pipeline
@@ -48,6 +42,6 @@ trigger:
 
 ---
 kind: signature
-hmac: b6dbf8ecf2e6959e7c5b42f0ad00850a0469ceb2ca856d9d44e81e8e1bd0f18b
+hmac: 6c6c1544bcd3b611f80d48129803e6e5d3fd475c00462dfceb290a24df4d9854
 
 ...
