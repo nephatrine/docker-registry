@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Build Config
+
+if [[ ! -d /mnt/config/etc/registry ]]; then
+  /command/s6-setuidgid guardian /bin/mkdir -p /mnt/config/etc/registry
+fi
+/command/s6-setuidgid guardian /bin/cp -n /etc/registry/* /mnt/config/etc/registry/
+
+# Start Service
+
+if [[ ! -d /mnt/config/data ]]; then
+  /command/s6-setuidgid guardian /bin/mkdir -p /mnt/config/data
+fi
+
+export HOME=/mnt/config/home
+exec /command/s6-setuidgid guardian /usr/bin/registry serve /mnt/config/etc/registry/config.yml
