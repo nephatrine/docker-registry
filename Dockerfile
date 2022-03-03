@@ -2,12 +2,12 @@ FROM nephatrine/alpine-s6:latest
 LABEL maintainer="Daniel Wolf <nephatrine@gmail.com>"
 
 ARG REGISTRY_VERSION=main
+ARG REGCLIENT_VERSION=main
 ARG BUILDTAGS="include_oss include_gcs"
 ARG GOPATH="/usr"
 RUN echo "====== COMPILE REGISTRY ======" \
  && mkdir /etc/registry \
- && apk add python3 \
- && apk add --virtual .build-registry \
+ && apk add --no-cache --virtual .build-registry \
   git go \
   make \
  && mkdir -p /usr/src/github.com/distribution \
@@ -18,10 +18,10 @@ RUN echo "====== COMPILE REGISTRY ======" \
  && cp /etc/registry/config-example.yml /etc/registry/config.yml \
  && sed -i 's~/var/lib/registry~/mnt/config/data~g' /etc/registry/config.yml \
  && sed -i 's~/etc/registry~/mnt/config/etc/registry~g' /etc/registry/config.yml \
+ && git -C /usr/src clone -b "$REGCLIENT_VERSION" --single-branch --depth=1 https://github.com/regclient/regclient.git \
+ && cd /usr/src/regclient && make && install -m 0755 bin/regctl bin/regsync bin/regbot /usr/bin/ \
  && cd /usr/src && rm -rf /usr/pkg/* /usr/src/* \
- && apk del --purge .build-registry && rm -rf /var/cache/apk/*
-ENV REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/mnt/config/data
-ENV REGISTRY_DATA_DIR=${REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY}/docker/registry/v2
+ && apk del --purge .build-registry
 
 COPY override /
 EXPOSE 5000/tcp
