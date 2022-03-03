@@ -1,3 +1,4 @@
 #!/bin/bash
 export HOME=/mnt/config/home
 /command/s6-setuidgid guardian /usr/bin/registry garbage-collect --delete-untagged=true /mnt/config/etc/registry/config.yml
+exit 0
