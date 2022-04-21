@@ -9,19 +9,37 @@ platform:
 
 steps:
 - name: build
+  environment:
+    PDR_USER:
+      from_secret: docker-user-pdr
+    PDR_PASS:
+      from_secret: docker-pass-pdr
   commands:
+  - docker build -t pdr.nephatrine.net/nephatrine/docker-registry:cached --target builder .
   - docker build -t pdr.nephatrine.net/nephatrine/docker-registry:latest .
-  - HOME=/mnt/config/home docker push pdr.nephatrine.net/nephatrine/docker-registry:latest
+  - docker login -p "$PDR_PASS" -u "$PDR_USER" pdr.nephatrine.net
+  - docker push pdr.nephatrine.net/nephatrine/docker-registry:latest
+  - docker logout pdr.nephatrine.net
+- name: publish
+  environment:
+    DOCKER_USER:
+      from_secret: docker-user
+    DOCKER_PASS:
+      from_secret: docker-pass
+  commands:
   - docker tag pdr.nephatrine.net/nephatrine/docker-registry:latest nephatrine/docker-registry:latest
-  - HOME=/mnt/config/home docker push nephatrine/docker-registry:latest
-  - docker rmi pdr.nephatrine.net/nephatrine/docker-registry:latest
+  - docker login -p "$DOCKER_PASS" -u "$DOCKER_USER"
+  - docker push -a nephatrine/docker-registry
+  - docker logout
+  depends_on:
+  - build
 
 ---
 kind: pipeline
-name: after
+name: notify
 
 steps:
-- name: notify
+- name: notify-status
   image: appleboy/drone-discord
   failure: ignore
   settings:
@@ -43,6 +61,6 @@ trigger:
 
 ---
 kind: signature
-hmac: ab81157fca9939dba824db6bb99810381fb9456e60530fda7de594e0d0d9c222
+hmac: a9f729c5834505eb4cf79b1050ad4f06ab1270c110d4abab52e948fd139bfc92
 
 ...
