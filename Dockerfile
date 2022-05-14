@@ -1,4 +1,4 @@
-FROM pdr.nephatrine.net/nephatrine/alpine-builder:latest AS builder
+FROM nephatrine/alpine:builder AS builder
 
 ARG GOPATH="/usr"
 ARG BUILDTAGS="include_oss include_gcs"
@@ -18,7 +18,7 @@ RUN echo "====== COMPILE REGCLIENT ======" \
  && cd /usr/src/regclient \
  && make binaries -j4
 
-FROM pdr.nephatrine.net/nephatrine/alpine-s6:latest
+FROM nephatrine/alpine-s6:latest
 LABEL maintainer="Daniel Wolf <nephatrine@gmail.com>"
 
 RUN mkdir /etc/registry
