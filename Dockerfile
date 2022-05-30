@@ -11,9 +11,7 @@ RUN git -C /usr/src clone -b "$REGCLIENT_VERSION" --single-branch --depth=1 http
 
 RUN echo "====== COMPILE REGISTRY ======" \
  && cd /usr/src/github.com/distribution/distribution \
- && go build -i . \
- && make build -j4 \
- && make binaries -j4
+ && go build -trimpath -ldflags "-s -w" -o /usr/bin/registry ./cmd/registry
 RUN echo "====== COMPILE REGCLIENT ======" \
  && cd /usr/src/regclient \
  && make binaries -j4
@@ -22,7 +20,7 @@ FROM nephatrine/alpine-s6:latest
 LABEL maintainer="Daniel Wolf <nephatrine@gmail.com>"
 
 RUN mkdir /etc/registry
-COPY --from=builder /usr/src/github.com/distribution/distribution/bin/ /usr/bin/
+COPY --from=builder /usr/bin/registry /usr/bin/registry
 COPY --from=builder /usr/src/regclient/bin/ /usr/local/bin/
 COPY --from=builder /usr/src/github.com/distribution/distribution/cmd/registry/config-example.yml /etc/registry/config-example.yml
 COPY override /
