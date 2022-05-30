@@ -1,4 +1,4 @@
-FROM nephatrine/alpine:builder AS builder
+FROM nephatrine/nxbuilder:alpine AS builder
 
 ARG GOPATH="/usr"
 ARG BUILDTAGS="include_oss include_gcs"
