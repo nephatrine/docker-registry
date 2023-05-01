@@ -1,21 +1,16 @@
-[Git](https://code.nephatrine.net/nephatrine/docker-registry/src/branch/master) |
+[Git](https://code.nephatrine.net/NephNET/docker-registry/src/branch/master) |
 [Docker](https://hub.docker.com/r/nephatrine/docker-registry/) |
 [unRAID](https://code.nephatrine.net/nephatrine/unraid-containers)
-
-[![Build Status](https://ci.nephatrine.net/api/badges/nephatrine/docker-registry/status.svg?ref=refs/heads/master)](https://ci.nephatrine.net/nephatrine/docker-registry)
 
 # Docker Registry
 
 This docker image contains a Docker Registry server to self-host your own
 docker registry.
 
-**YOU WILL NEED TO USE A SEPARATE REVERSE PROXY SERVER TO SECURE THIS SERVICE.
-SEE THE [DOCUMENTATION](https://docs.docker.com/registry/recipes/nginx/) FOR
-MORE DETAILS ON HOW TO CONFIGURE SUCH A PROXY.**
+To secure this service, we suggest a separate reverse proxy server, such as an
+[NGINX](https://nginx.com/) container.
 
-- [Alpine Linux](https://alpinelinux.org/)
-- [Skarnet Software](https://skarnet.org/software/)
-- [S6 Overlay](https://github.com/just-containers/s6-overlay)
+- [Alpine Linux](https://alpinelinux.org/) w/ [S6 Overlay](https://github.com/just-containers/s6-overlay)
 - [Docker Registry](https://docs.docker.com/registry/)
 
 You can spin up a quick temporary test container like this:
